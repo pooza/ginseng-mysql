@@ -1,0 +1,39 @@
+name: test
+on:
+  - push
+env:
+  CI: 'true'
+jobs:
+  test-ruby30:
+    runs-on: ubuntu-latest
+    services:
+      mysql:
+        image: mysql:12
+        env:
+          POSTGRES_USER: mysql
+          POSTGRES_PASSWORD: password
+          POSTGRES_DB: test
+        ports:
+          - 5432:5432
+        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
+    steps:
+      - uses: actions/checkout@v2
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.0.1
+      - name: apt install
+        run: |
+          sudo apt update
+          sudo apt install libpq-dev
+      - name: bundle install
+        run: |
+          gem install bundler -v '~>2.2.0'
+          bundle install --jobs 4 --retry 3
+          bundle exec rake bundle:update
+          bundle exec rake bundle:check
+      - name: Run lint
+        run: |
+          bundle exec rubocop
+      - name: Run test
+        run: |
+          bundle exec rake test
