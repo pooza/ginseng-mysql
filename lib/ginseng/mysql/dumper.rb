@@ -1,10 +1,17 @@
 module Ginseng
   module MySQL
     class Dumper
-      attr_accessor :dsn, :dest
+      attr_reader :dsn
+      attr_accessor :dest
 
       def initialize(params = {})
-        @dsn = Database.dsn
+        dsn = Database.dsn
+      end
+
+      def dsn=(dsn)
+        @dsn = dsn
+        @command = nil
+        @dump = nil
       end
 
       def command
