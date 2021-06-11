@@ -1,0 +1,5 @@
+SELECT *
+FROM information_schema.tables
+<% if params[:schema] -%>
+WHERE table_schema='<%= params[:schema] %>'
+<% end -%>
