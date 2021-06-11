@@ -8,14 +8,12 @@ jobs:
     runs-on: ubuntu-latest
     services:
       mysql:
-        image: mysql:12
+        image: mysql:5.7
         env:
-          POSTGRES_USER: mysql
-          POSTGRES_PASSWORD: password
-          POSTGRES_DB: test
+          MYSQL_ROOT_PASSWORD: password
         ports:
-          - 5432:5432
-        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
+          - 3306:3306
+        options: --health-cmd "mysqladmin ping -h localhost" --health-interval 20s --health-timeout 10s --health-retries 5
     steps:
       - uses: actions/checkout@v2
       - uses: ruby/setup-ruby@v1
