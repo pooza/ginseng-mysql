@@ -20,6 +20,18 @@ namespace :bundle do
 end
 
 desc 'test all'
-task :test do
+task test: ['tmp:cache:clean'] do
   Ginseng::MySQL::TestCase.load
+end
+
+namespace :tmp do
+  namespace :cache do
+    desc 'clean caches'
+    task :clean do
+      sh "rm #{File.join(Ginseng::MySQL::Environment.dir, 'tmp/cache/*.gz')}" rescue nil
+    end
+
+    desc 'alias of tmp:cache:clean'
+    task clear: [:clean]
+  end
 end
