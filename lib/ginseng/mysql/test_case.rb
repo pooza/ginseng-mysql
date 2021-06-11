@@ -20,7 +20,8 @@ module Ginseng
           end
         end
         names ||= Dir.glob(File.join(dir, '*.rb')).map {|v| File.basename(v, '.rb')}
-        TestCaseFilter.all.select(&:active?).each do |filter|
+        TestCaseFilter.all do |filter|
+          next unless filter.active?
           puts "filter: #{filter.class}" if Environment.test?
           filter.exec(names)
         end

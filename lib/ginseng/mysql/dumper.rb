@@ -11,22 +11,24 @@ module Ginseng
         unless @command
           @command = CommandLine.new([
             'mysqldump',
-            '-h', @dsn.host,
-            '-u', @dsn.user,
+            '--host', @dsn.host || '127.0.0.1',
+            '--port', @dsn.port.to_s || '3306',
+            '--user', @dsn.user,
+            '--databases', @dsn.dbname,
             '--single-transaction',
-            '--skip-dump-date',
-            @dsn.dbname
+            '--skip-dump-date'
           ])
-          @command.env = {'MYSQL_PWD' => @dsn.password}
+          @command.env = {'MYSQL_PWD' => @dsn.password} if @dsn.password
         end
         return @command
       end
 
       def exec
-        command.exec
-        raise "Bad status #{command.status}" unless command.status.zero?
-        @dump = command.stdout
-        @dump.gsub!(/AUTO_INCREMENT=[0-9]+ /, '')
+        unless @dump
+          command.exec
+          raise "Bad status #{command.status}" unless command.status.zero?
+          @dump = command.stdout
+        end
         return @dump
       end
 

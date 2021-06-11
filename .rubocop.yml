@@ -1,5 +1,7 @@
 require:
   - rubocop-performance
+  - rubocop-sequel
+  - rubocop-rake
 
 AllCops:
   AllowSymlinksInCacheRootDirectory: true
@@ -142,6 +144,9 @@ Style/SingleArgumentDig:
 Style/StringConcatenation:
   Enabled: true
 
+Style/EmptyMethod:
+  EnforcedStyle: expanded
+
 Style/CombinableLoops: # (new in 0.90)
   Enabled: true
 
@@ -221,6 +226,7 @@ Metrics/ClassLength:
     - 'test/*'
     - '**/contract/*'
     - '**/controller/*'
+    - '**/service/*'
 
 Metrics/ModuleLength:
   Max: 200
@@ -228,6 +234,7 @@ Metrics/ModuleLength:
     - 'test/*'
     - '**/contract/*'
     - '**/controller/*'
+    - '**/service/*'
 
 Metrics/CyclomaticComplexity:
   Max: 10
@@ -330,3 +337,12 @@ Performance/StringInclude:
 
 Performance/Sum: # (new in 1.8)
   Enabled: true
+
+Sequel/ConcurrentIndex:
+  Enabled: false
+
+Sequel/SaveChanges:
+  Exclude:
+    - '*'
+  Include:
+    - '**/model/*'
