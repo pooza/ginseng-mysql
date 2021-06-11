@@ -12,7 +12,7 @@ module Ginseng
           @command = CommandLine.new([
             'mysqldump',
             '--host', @dsn.host || '127.0.0.1',
-            '--port', @dsn.port.to_s || '3306',
+            '--port', @dsn.port || 3306,
             '--user', @dsn.user,
             '--databases', @dsn.dbname,
             '--single-transaction',
