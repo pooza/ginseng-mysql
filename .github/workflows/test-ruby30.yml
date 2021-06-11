@@ -26,7 +26,7 @@ jobs:
           sudo apt install libpq-dev
       - name: initialize database
         run: |
-          mysql -h 127.0.0.1 --port 3306 -u root -ppassword -e "$(cat $(find ./ -name init.sql))"
+          mysql -h 127.0.0.1 --port 3306 -u root -ppassword -e "CREATE TABLE users(id int, name varchar);" test_users
       - name: bundle install
         run: |
           gem install bundler -v '~>2.2.0'
