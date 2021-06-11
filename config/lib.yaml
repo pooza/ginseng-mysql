@@ -9,5 +9,3 @@ package:
   license: MIT
 mysql:
   dsn: mysql2://root:password@127.0.0.1:3306/test_ci
-  slow_query:
-    seconds: 5
