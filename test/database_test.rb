@@ -9,10 +9,10 @@ module Ginseng
         assert(@db.connection.is_a?(Sequel::Database))
       end
 
-      def test_escape_string
-        assert_equal(@db.escape_string('あえ'), 'あえ')
-        assert_equal(@db.escape_string(%(あえ")), %(あえ\"))
-        assert_equal(@db.escape_string(%(あえ')), %(あえ''))
+      def test_escape
+        assert_equal(@db.escape('あえ'), 'あえ')
+        assert_equal(@db.escape(%(あえ")), %(あえ\\\"))
+        assert_equal(@db.escape(%(あえ')), %(あえ\\'))
       end
 
       def test_execute

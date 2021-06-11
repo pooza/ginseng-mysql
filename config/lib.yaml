@@ -8,6 +8,6 @@ package:
   description: ginseng PostgreSQL libraries
   license: MIT
 mysql:
-  dsn: mysql://mysql:password@localhost:5432/test
+  dsn: mysql2://mysql:password@127.0.0.1:3306/information_schema
   slow_query:
     seconds: 5

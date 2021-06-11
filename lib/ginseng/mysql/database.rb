@@ -22,8 +22,10 @@ module Ginseng
       end
 
       def escape_string(value)
-        return connection.escape(value)
+        return Mysql2::Client.escape(value)
       end
+
+      alias escape escape_string
 
       def create_sql(name, params = {})
         template = query_template_class.new(name)
