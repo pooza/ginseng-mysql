@@ -35,6 +35,7 @@ module Ginseng
           command.exec
           raise "Bad status #{command.status}" unless command.status.zero?
           @dump = command.stdout
+          @dump.gsub!(/AUTO_INCREMENT=[0-9]+ /, '')
         end
         return @dump
       end
