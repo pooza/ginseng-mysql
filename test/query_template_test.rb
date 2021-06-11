@@ -10,14 +10,14 @@ module Ginseng
       end
 
       def test_param
-        @template['schema'] = 'fuga'
+        @template[:schema] = 'fuga'
         assert_equal(@template.params[:schema], 'fuga')
         @template[:schema] = 'hogehoge'
         assert_equal(@template.params[:schema], 'hogehoge')
       end
 
       def test_params
-        @template.params = {'schema' => 'hoge'}
+        @template.params = {:schema => 'hoge'}
         assert_equal(@template.params[:schema], 'hoge')
         @template.params = {schema: 'information_schema'}
         assert_equal(@template.params[:schema], 'information_schema')
