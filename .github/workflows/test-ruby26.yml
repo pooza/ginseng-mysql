@@ -24,8 +24,8 @@ jobs:
           sudo apt update
           sudo apt install libpq-dev
       - name: initialize database
-          run: |
-            mysql -h 127.0.0.1 --port 3306 -u root -ppassword -e "$(cat $(find ./ -name init.sql))"
+        run: |
+          mysql -h 127.0.0.1 --port 3306 -u root -ppassword -e "$(cat $(find ./ -name init.sql))"
       - name: bundle install
         run: |
           gem install bundler -v '~>2.2.0'
