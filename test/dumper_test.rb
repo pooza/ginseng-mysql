@@ -3,7 +3,11 @@ module Ginseng
     class DumperTest < Test::Unit::TestCase
       def setup
         @dumper = Dumper.new
-        @dest = "#{Time.now.to_s.adler32}.sql"
+        @dumper.dest = File.join(
+          Environment.dir,
+          'tmp/cache',
+          "#{Time.now.to_s.adler32}.sql",
+        )
       end
 
       def test_dsn
@@ -15,9 +19,7 @@ module Ginseng
       end
 
       def test_exec
-        assert_kind_of(String, @dumper.exec)
-        @dumper.dest = File.join(Environment.dir, 'tmp/cache', @dest)
-        @dumper.save
+        @dumper.exec
         assert(File.exist?(@dumper.dest))
         @dumper.compress
         assert(File.exist?(@dumper.dest))
