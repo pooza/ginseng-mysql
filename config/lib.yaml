@@ -1,11 +1,11 @@
 package:
-  version: 1.0.3
+  version: 1.0.4
   url: https://github.com/pooza/ginseng-mysql
   authors:
     - Tatsuya Koishi
   email:
     - tkoishi@b-shock.co.jp
-  description: ginseng PostgreSQL libraries
+  description: ginseng MySQL libraries
   license: MIT
 mysql:
   dsn: mysql2://root:password@127.0.0.1:3306/test_ci
