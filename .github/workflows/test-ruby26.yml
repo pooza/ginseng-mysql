@@ -19,7 +19,7 @@ jobs:
       - uses: actions/checkout@v2
       - uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 2.6.7
+          ruby-version: 2.6.8
       - name: apt install
         run: |
           sudo apt update
