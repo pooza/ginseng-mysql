@@ -4,7 +4,7 @@ on:
 env:
   CI: 'true'
 jobs:
-  test-ruby26:
+  test-ruby30:
     runs-on: ubuntu-latest
     services:
       mysql:
@@ -19,7 +19,7 @@ jobs:
       - uses: actions/checkout@v2
       - uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 2.6.9
+          ruby-version: 3.1.0
       - name: apt install
         run: |
           sudo apt update
