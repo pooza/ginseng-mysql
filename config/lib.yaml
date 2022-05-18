@@ -1,13 +1,13 @@
-package:
-  version: 1.0.7
-  url: https://github.com/pooza/ginseng-mysql
-  authors:
-    - Tatsuya Koishi
-  email:
-    - tkoishi@b-shock.co.jp
-  description: ginseng MySQL libraries
-  license: MIT
 mysql:
   dsn: mysql2://root:password@127.0.0.1:3306/test_ci
   slow_query:
     seconds: 5
+package:
+  authors:
+    - Tatsuya Koishi
+  description: ginseng MySQL libraries
+  email:
+    - tkoishi@b-shock.co.jp
+  license: MIT
+  url: https://github.com/pooza/ginseng-mysql
+  version: 1.0.7
